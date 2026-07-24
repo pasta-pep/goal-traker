@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Field Log — Goal Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="hexhome">
+        <!-- Top nav -->
+        <nav class="hex-nav" id="nav">
+            <button data-nav="index">index</button>
+            <button data-nav="new">new</button>
+            <button data-nav="about">about</button>
+            <button data-nav=""></button>
+        </nav>
+
+        <!-- Homescreen: the shape (click to create, or shows selected goal's progress) -->
+        <div class="hex-stage" id="stage">
+            <button class="hex-shape-btn" id="shapeBtn" title="Start a new goal">
+                <div class="hex-shape" id="shape"></div>
+            </button>
+        </div>
+
+        <!-- INDEX: projects list -->
+        <div class="hex-projects" id="projectsPanel" hidden>
+            <h2>projects</h2>
+            <div id="projectsList"></div>
+        </div>
+
+        <!-- NEW: create-goal form -->
+        <div class="hex-modal-wrap" id="newModal" hidden>
+            <div class="hex-panel">
+                <div class="hex-grid">
+                    <div class="hex-field full">
+                        <label>new project</label>
+                        <input id="f_title" placeholder="read 10 pages a day for a month…" />
+                    </div>
+                    <div class="hex-field">
+                        <label>starting point (number value)</label>
+                        <input id="f_start" placeholder="ex: 1" />
+                    </div>
+                    <div class="hex-field">
+                        <label>target (number value)</label>
+                        <input id="f_target" placeholder="ex: 30" />
+                    </div>
+                    <div class="hex-field full">
+                        <label>what are we measuring in?</label>
+                        <input id="f_unit" placeholder="ex: days, years, pages, $usd" />
+                    </div>
+                    <div class="hex-field">
+                        <label>Second metric — optional (e.g. "how fast a mile")</label>
+                        <input id="f_seclabel" placeholder="ex: mile time" />
+                    </div>
+                    <div class="hex-field">
+                        <label>Second metric target</label>
+                        <input id="f_sectarget" placeholder="ex: 7 minutes" />
+                    </div>
+                    <div class="hex-logrow">
+                        <button class="hex-logbtn" id="createBtn">log entry</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UPDATE: add to an existing goal -->
+        <div class="hex-modal-wrap" id="updateModal" hidden>
+            <div class="hex-panel">
+                <div class="hex-grid">
+                    <div class="hex-field">
+                        <div class="hex-readout" id="u_current">Currently at —</div>
+                        <label>add value to current value</label>
+                        <input id="u_add" placeholder="ex: 1" />
+                    </div>
+                    <div class="hex-field">
+                        <div class="hex-readout" id="u_target">target is —</div>
+                    </div>
+
+                    <div class="hex-field" id="u_secondWrap">
+                        <div class="hex-readout" id="u_lastlog">Last log —</div>
+                        <label>second metric update</label>
+                        <input id="u_second" placeholder="ex: 10 minutes" />
+                    </div>
+                    <div class="hex-field" id="u_sectargetWrap">
+                        <div class="hex-readout" id="u_sectarget">Second target is —</div>
+                    </div>
+
+                    <div class="hex-logrow">
+                        <button class="hex-logbtn" id="logBtn">log entry</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
