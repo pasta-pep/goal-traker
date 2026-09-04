@@ -8,58 +8,106 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/iok5bxn.css">
 </head>
 
 <body>
-    <div class="hexhome">
+
+    <div class="hexhome" id="appScreen">
         <!-- Top nav -->
-        <nav class="hex-nav" id="nav">
-            <button data-nav="index">index</button>
-            <button data-nav="new">new</button>
-            <button data-nav="about">about</button>
-            <button data-nav=""></button>
-        </nav>
+        <div class="hex-header">
+            <nav class="hex-nav" id="nav">
+                <button data-nav="new">new</button>
+                <button data-nav="projects">projects</button>
+                <button data-nav="about">about</button>
+                <!-- <button data-nav=""></button> -->
+            </nav>
+            <div class="hex-logo">GoalTraker</div>
+            <div class="hex-logo-mobile">GT</div>
+        </div>
+
+        <div class="hex-account" id="account" hidden>
+            <span class="hex-live-dot"></span>
+            <span id="accountEmail"></span>
+            <button id="signoutBtn" hidden>sign out</button>
+        </div>
+
 
         <!-- Homescreen: the shape (click to create, or shows selected goal's progress) -->
         <div class="hex-stage" id="stage">
             <button class="hex-shape-btn" id="shapeBtn" title="Start a new goal">
-                <div class="hex-shape" id="shape"></div>
+                <div class="hex-shape" id="shape">
+                    <p class="hex-tagline">Set a target. <br> Log your progress. <br> Watch it grow.</p>
+                </div>
             </button>
+            <p class="hex-complete-msg" id="completeMsg" hidden>Goal Completed!</p>
+        </div>
+
+        <!-- LOGIN modal -->
+        <div class="hex-auth" id="authScreen" hidden>
+            <div class="hex-auth-box">
+                <h1>Field Log</h1>
+                <input id="auth_email" type="email" placeholder="email" />
+                <input id="auth_password" type="password" placeholder="password" />
+                <button id="loginBtn">log in</button>
+                <button id="signupBtn">sign up</button>
+                <div class="hex-auth-msg" id="authMsg"></div>
+            </div>
         </div>
 
         <!-- INDEX: projects list -->
         <div class="hex-projects" id="projectsPanel" hidden>
-            <h2>projects</h2>
+            <div class="hex-proj-header">
+                <h2>projects</h2>
+                <button id="addProjectBtn" class="hex-proj-add" title="New project">+</button>
+            </div>
             <div id="projectsList"></div>
+        </div>
+
+        <div class="hex-about" id="aboutPanel" hidden>
+            <div class="hex-about-panel">
+                <h2>about</h2>
+                <p>Text here....</p>
+            </div>
         </div>
 
         <!-- NEW: create-goal form -->
         <div class="hex-modal-wrap" id="newModal" hidden>
             <div class="hex-panel">
+                <button class="hex-modal-close" id="closeNewBtn">×</button>
+                <h3>New project</h3>
                 <div class="hex-grid">
                     <div class="hex-field full">
-                        <label>new project</label>
+                        <label>Project name</label>
                         <input id="f_title" placeholder="read 10 pages a day for a month…" />
                     </div>
                     <div class="hex-field">
-                        <label>starting point (number value)</label>
+                        <label>What are we measuring in?</label>
+                        <input id="f_unit" placeholder="ex: days, years, pages, $usd" />
+                    </div>
+                    <div class="hex-field hex-field-checkbox">
+                        <label class="hex-checkbox-label">
+                            <input type="checkbox" id="f_direction" class="hex-checkbox" />
+                            <span>This goal decreases over time (e.g. weight loss, debt payoff)</span>
+                        </label>
+                    </div>
+                    <div class="hex-field">
+                        <label>Starting point (number value)</label>
                         <input id="f_start" placeholder="ex: 1" />
                     </div>
                     <div class="hex-field">
-                        <label>target (number value)</label>
+                        <label>Target (number value)</label>
                         <input id="f_target" placeholder="ex: 30" />
                     </div>
-                    <div class="hex-field full">
-                        <label>what are we measuring in?</label>
-                        <input id="f_unit" placeholder="ex: days, years, pages, $usd" />
+                    <div class="hex-field">
+                        <label>Start date (optional)</label>
+                        <input id="f_startdate" class="hex-date-input" placeholder="Select a date" readonly />
+                        <div class="hex-calendar" id="startCalendar" hidden></div>
                     </div>
                     <div class="hex-field">
-                        <label>Second metric — optional (e.g. "how fast a mile")</label>
-                        <input id="f_seclabel" placeholder="ex: mile time" />
-                    </div>
-                    <div class="hex-field">
-                        <label>Second metric target</label>
-                        <input id="f_sectarget" placeholder="ex: 7 minutes" />
+                        <label>Target finish date (optional)</label>
+                        <input id="f_enddate" class="hex-date-input" placeholder="Select a date" readonly />
+                        <div class="hex-calendar" id="endCalendar" hidden></div>
                     </div>
                     <div class="hex-logrow">
                         <button class="hex-logbtn" id="createBtn">log entry</button>
@@ -76,6 +124,7 @@
                         <div class="hex-readout" id="u_current">Currently at —</div>
                         <label>add value to current value</label>
                         <input id="u_add" placeholder="ex: 1" />
+
                     </div>
                     <div class="hex-field">
                         <div class="hex-readout" id="u_target">target is —</div>
@@ -91,13 +140,22 @@
                     </div>
 
                     <div class="hex-logrow">
+                        <div class="hex-progress-meter" id="progressMeter"></div>
                         <button class="hex-logbtn" id="logBtn">log entry</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <div class="hex-modal-wrap" id="summaryModal" hidden>
+            <div class="hex-panel hex-summary-panel">
+                <h3>Goal Summary</h3>
+                <div class="hex-summary-table" id="summaryTable"></div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
 </body>
 

@@ -18,16 +18,63 @@ html,
 body {
     margin: 0;
     height: 100%;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .hexhome {
     background: var(--bg);
     min-height: 100vh;
     width: 100%;
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     position: relative;
     overflow: hidden;
     padding: 40px 40px;
+}
+
+.hex-account {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--cream);
+    z-index: 6;
+}
+
+.hex-live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0E722E;
+    box-shadow: 0 0 6px 1px rgba(14, 114, 46, 0.7);
+}
+
+#accountEmail {
+    cursor: pointer;
+}
+
+#signoutBtn {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 6px;
+    background: #000;
+    border: 1px solid #555;
+    color: var(--cream);
+    padding: 5px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+#signoutBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Nav */
@@ -58,8 +105,9 @@ body {
 
 .hex-nav button:hover,
 .hex-nav button.active {
-    background: #6f666a;
+    background: #000000;
     opacity: 1;
+    font-weight: 700;
 }
 
 /* Homescreen shape */
@@ -93,6 +141,17 @@ body {
     background: var(--cream);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transition: background .6s ease, border-radius .6s ease, box-shadow .6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.hex-tagline {
+    margin: 0;
+    text-align: center;
+    transform: translateY(-10px);
 }
 
 .hex-shape .grain {
@@ -106,6 +165,56 @@ body {
     background-size: 120px 120px;
 }
 
+/* .hex-complete-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+    font-weight: 700;
+    font-size: 100px;
+    color: white;
+    -webkit-text-stroke: 2px #6fb8c4;
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+} */
+
+.hex-complete-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+    font-weight: 700;
+    font-size: 138px;
+    line-height: 1;
+    color: white;
+    -webkit-text-stroke: 2px #339eaf6b;
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: -0.03em;
+    animation: bounce 3s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 0 1px #339faf) drop-shadow(0 0 5px #0878bea5) drop-shadow(0 0 8px #cf2323ac);
+}
+
+@keyframes bounce {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    50% {
+        transform: translate(-50%, -60%);
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
 /* Projects sidebar */
 .hex-projects {
     position: absolute;
@@ -116,6 +225,15 @@ body {
     background: var(--cream);
     padding: 22px 20px;
     z-index: 3;
+    border: 3px solid #9FD22A;
+    filter: drop-shadow(5px 5px 10px #404041);
+}
+
+.hex-projects h1 {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--panel-text);
+    margin: 0 0 16px;
 }
 
 .hex-projects h2 {
@@ -125,17 +243,85 @@ body {
     margin: 0 0 16px;
 }
 
+
+.hex-proj-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hex-logo {
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    color: white;
+    font-size: 64px;
+    line-height: 0.8;
+}
+
+.hex-logo-mobile {
+    display: none;
+    /* hidden by default (desktop) */
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    color: white;
+    font-size: 40px;
+    /* smaller, since it's just 2 letters but header is cramped */
+    line-height: 0.8;
+}
+
+.hex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hex-proj-add {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--list-text);
+    padding: 0;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+
+}
+
+.hex-proj-add:hover {
+    color: #000;
+}
+
+.hex-proj-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hex-proj-delete {
+    opacity: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: -6px;
+}
+
+.hex-proj-row:hover .hex-proj-delete {
+    opacity: 1;
+}
+
+
 .hex-proj-item {
     background: none;
     border: none;
-    display: block;
-    width: 100%;
     text-align: left;
     font-size: 12px;
     color: var(--list-text);
     padding: 6px 0 6px 24px;
     cursor: pointer;
-    font-family: 'Inter', sans-serif;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
 }
 
 .hex-proj-item:hover {
@@ -146,6 +332,28 @@ body {
     font-size: 11px;
     color: #9a9082;
     padding-left: 24px;
+}
+
+.hex-proj-item span.hex-proj-done {
+    text-decoration: line-through;
+}
+
+
+/* About panel */
+
+.hex-about {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hex-about-panel {
+    background: var(--cream);
+    width: min(660px, 90%);
+    padding: 44px 56px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
 }
 
 /* Modal panels */
@@ -163,7 +371,24 @@ body {
     z-index: 4;
 }
 
+#progressMeter {
+    display: flex;
+    gap: 4px;
+}
+
+.hex-meter-seg {
+    width: 16px;
+    height: 16px;
+    background-color: var(--placeholder);
+
+}
+
+.hex-meter-seg.filled {
+    background-color: #59604A;
+}
+
 .hex-panel {
+    position: relative;
     background: var(--cream);
     opacity: 1;
     width: min(660px, 90%);
@@ -184,25 +409,53 @@ body {
     }
 }
 
+/* .hex-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+    row-gap: 24px;
+} */
+
 .hex-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 40px;
     row-gap: 24px;
+    align-items: stretch;
 }
 
 .hex-field {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .hex-field.full {
     grid-column: 1 / -1;
 }
 
-/* full-width fields span the row, but their box matches one column's width */
 .hex-field.full input {
     max-width: calc(50% - 20px);
+}
+
+.hex-field .hex-checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+
+}
+
+.hex-field-checkbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+}
+
+.hex-checkbox-label span {
+    max-width: 280px;
+
 }
 
 .hex-field label {
@@ -214,7 +467,7 @@ body {
 }
 
 .hex-field input {
-    width: 100%;
+    /* width: 100%; */
     max-width: 320px;
     border: 1px solid var(--field-border);
     border-radius: 2px;
@@ -223,7 +476,7 @@ body {
     font-size: 11px;
     color: var(--field-label);
     font-family: 'Inter', sans-serif;
-    margin-top: auto;
+    /* margin-top: auto; */
 }
 
 .hex-field input::placeholder {
@@ -267,23 +520,247 @@ body {
 
 .hex-logbtn {
     background: transparent;
+    background: #59604A;
     border: 1px solid var(--field-label);
     border-radius: 2px;
     padding: 7px 0;
     width: 150px;
     cursor: pointer;
     font-size: 12px;
-    color: var(--field-label);
+    color: #ffffff;
     font-family: 'Inter', sans-serif;
 }
 
 .hex-logbtn:hover {
-    background: rgba(0, 0, 0, .04);
+    background: #4A5039;
 }
 
 .hex-logrow {
     grid-column: 1 / -1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: flex-end;
     margin-top: 8px;
+}
+
+.hex-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    border: none;
+    font-size: 24px;
+    color: var(--panel-text);
+    background: none;
+    cursor: pointer;
+}
+
+
+.hex-calendar {
+    position: absolute;
+    background: #000;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    z-index: 10;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    width: max-content;
+}
+
+.hex-cal-header {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 0 4px;
+}
+
+.hex-cal-nav {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 2px 6px;
+}
+
+.hex-cal-label {
+    color: white;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.hex-cal-day {
+    background: none;
+    border: none;
+    color: white;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+    font-size: 12px;
+    padding: 6px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.hex-cal-weekday {
+    color: #888;
+    font-size: 12px;
+    text-align: center;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+}
+
+.hex-cal-day:hover {
+    background: #333;
+    border-radius: 50%;
+}
+
+.hex-cal-selected {
+    background: #59604A;
+    color: white;
+    border-radius: 50%;
+}
+
+.hex-cal-empty {
+    /* just an invisible spacer, no styling needed */
+}
+
+/* Summary panel */
+.hex-summary-panel {
+    max-width: 500px;
+}
+
+.hex-summary-table {
+    display: grid;
+    grid-template-columns: max-content minmax(max-content, 1fr);
+    column-gap: 0;
+    row-gap: 0;
+    border: 1px solid var(--panel-text);
+    width: 100%;
+}
+
+/* .hex-summary-table::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 70%;
+    width: 1px;
+    background: var(--panel-text);
+} */
+
+.hex-summary-row {
+    display: contents;
+}
+
+.hex-summary-row:last-child {
+    border-bottom: none;
+}
+
+/* .hex-summary-label {
+    font-weight: 700;
+    color: var(--panel-text);
+    font-size: 14px;
+    border-right: 1px solid var(--panel-text);
+    border-bottom: 1px solid var(--panel-text);
+    padding: 10px 16px;
+} */
+
+.hex-summary-label {
+    font-weight: 700;
+    color: var(--panel-text);
+    font-size: 14px;
+    border-right: 1px solid var(--panel-text);
+    border-bottom: 1px solid var(--panel-text);
+    padding: 10px 120px 10px 16px;
+}
+
+.hex-summary-value {
+    color: var(--field-label);
+    font-size: 14px;
+    text-align: right;
+    border-bottom: 1px solid var(--panel-text);
+    padding: 10px 16px;
+}
+
+.hex-summary-row:last-child .hex-summary-label,
+.hex-summary-row:last-child .hex-summary-value {
+    border-bottom: none;
+}
+
+.hex-auth {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+.hex-auth-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 440px;
+    background: #000;
+    padding: 32px 28px;
+}
+
+.hex-auth-box h1 {
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+    color: var(--cream);
+    font-size: 22px;
+    margin: 0 0 8px;
+    text-align: center;
+}
+
+.hex-auth-box input {
+    padding: 9px 11px;
+    border: 1px solid #555;
+    border-radius: 3px;
+    background: #1a1a1a;
+    color: #eee;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+}
+
+.hex-auth-box button {
+    padding: 9px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+}
+
+#loginBtn {
+    background: #0E722E;
+    color: #fff;
+}
+
+#signupBtn {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid #555;
+}
+
+.hex-auth-msg {
+    color: #E0A090;
+    font-size: 12px;
+    text-align: center;
+    min-height: 14px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Responsive breakpoints — always last */
+
+@media (max-width: 750px) {
+    .hex-logo {
+        display: none;
+    }
+
+    .hex-logo-mobile {
+        display: block;
+    }
 }
