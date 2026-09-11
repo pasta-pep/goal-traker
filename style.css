@@ -628,7 +628,8 @@ body {
 
 /* Summary panel */
 .hex-summary-panel {
-    max-width: 500px;
+    max-width: 560px;
+    width: 100%;
 }
 
 .hex-summary-table {
@@ -658,14 +659,6 @@ body {
     border-bottom: none;
 }
 
-/* .hex-summary-label {
-    font-weight: 700;
-    color: var(--panel-text);
-    font-size: 14px;
-    border-right: 1px solid var(--panel-text);
-    border-bottom: 1px solid var(--panel-text);
-    padding: 10px 16px;
-} */
 
 .hex-summary-label {
     font-weight: 700;
@@ -673,7 +666,7 @@ body {
     font-size: 14px;
     border-right: 1px solid var(--panel-text);
     border-bottom: 1px solid var(--panel-text);
-    padding: 10px 120px 10px 16px;
+    padding: 10px 16px;
 }
 
 .hex-summary-value {
