@@ -100,7 +100,7 @@ body {
     cursor: pointer;
     transition: background .15s;
     opacity: .9;
-    font-family: 'Inter', sans-serif;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
 }
 
 .hex-nav button:hover,
@@ -152,6 +152,7 @@ body {
     margin: 0;
     text-align: center;
     transform: translateY(-10px);
+    font-family: "helvetica-neue-lt-pro", sans-serif;
 }
 
 .hex-shape .grain {
@@ -475,8 +476,7 @@ body {
     padding: 5px 7px;
     font-size: 11px;
     color: var(--field-label);
-    font-family: 'Inter', sans-serif;
-    /* margin-top: auto; */
+    font-family: "helvetica-neue-lt-pro", sans-serif;
 }
 
 .hex-field input::placeholder {
@@ -528,7 +528,7 @@ body {
     cursor: pointer;
     font-size: 12px;
     color: #ffffff;
-    font-family: 'Inter', sans-serif;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
 }
 
 .hex-logbtn:hover {
@@ -714,7 +714,7 @@ body {
     border-radius: 3px;
     background: #1a1a1a;
     color: #eee;
-    font-family: 'Inter', sans-serif;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
     font-size: 13px;
 }
 
@@ -723,7 +723,7 @@ body {
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    font-family: 'Inter', sans-serif;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
     font-size: 13px;
 }
 
@@ -743,7 +743,7 @@ body {
     font-size: 12px;
     text-align: center;
     min-height: 14px;
-    font-family: 'Inter', sans-serif;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
 }
 
 /* Responsive breakpoints — always last */
