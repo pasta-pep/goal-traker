@@ -723,6 +723,13 @@ function init() {
     document.getElementById("loginBtn").addEventListener("click", doLogin);
     document.getElementById("signupBtn").addEventListener("click", doSignup);
 
+    document.getElementById("auth_password").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") doLogin();
+    });
+    document.getElementById("auth_email").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") doLogin();
+    });
+
     document.querySelector("#authScreen .hex-auth-box").addEventListener("click", (e) => e.stopPropagation());
     document.getElementById("authScreen").addEventListener("click", () => hideLogin());
 
